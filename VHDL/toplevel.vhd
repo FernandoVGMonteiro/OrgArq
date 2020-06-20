@@ -10,6 +10,16 @@ port (clock:	in std_logic;
 end entity;
 
 architecture arch of toplevel is
+
+component fluxo_de_dados is
+port (clock:	in std_logic;
+		reset:	in std_logic
+		);
+end component;
+
 begin
+
+fluxoDeDados: fluxo_de_dados
+port map(clock, reset);
 
 end architecture;
