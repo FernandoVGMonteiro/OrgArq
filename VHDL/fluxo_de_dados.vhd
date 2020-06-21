@@ -39,6 +39,16 @@ signal cWBo: std_logic_vector(1 downto 0);
 signal cMo:  std_logic_vector(2 downto 0);
 signal cEXo: std_logic_vector(3 downto 0);
 
+-- EX: Instruction Execution
+signal sl2Out: std_logic_vector(31 downto 0);
+signal npcjEx: std_logic_vector(31 downto 0);
+signal ulaInputB: std_logic_vector(31 downto 0);
+signal ulaOutput: std_logic_vector(31 downto 0);
+signal ulaOp: std_logic_vector(3 downto 0);
+signal endReg: std_logic_vector(4 downto 0);
+signal zero: std_logic;
+signal EXMDout: std_logic_vector(106 downto 0);
+
 -- Declaração dos demais componentes
 component registrador is
 generic (numBits: integer);
@@ -63,9 +73,9 @@ port (clock: in std_logic;
 		);
 end component;
 
-component add_4 is
+component somador is
 port (
-		input:  in  std_logic_vector(31 downto 0);
+		inputA, inputB:  in  std_logic_vector(31 downto 0);
 		output: out std_logic_vector(31 downto 0)
 		);
 end component;
@@ -94,6 +104,32 @@ port (
 		);
 end component;
 
+component shift_left_2 is
+port (
+		input:  in  std_logic_vector(31 downto 0);
+		output: out std_logic_vector(31 downto 0)
+		);
+end component;
+
+component ULA is
+port(
+		A, B:					in  std_logic_vector(31 downto 0);
+		Controle:			in  std_logic_vector( 3 downto 0);
+		VemUm:				in  std_logic;
+		C:						out std_logic_vector(31 downto 0);
+		Zero, Overflow:	out std_logic 
+		
+);
+end component;
+
+component controle_ula is
+port (
+		input:  in  std_logic_vector(5 downto 0);
+		ulaOp:  in  std_logic_vector(1 downto 0);
+		output: out std_logic_vector(3 downto 0)
+		);
+end component;
+
 begin
 
 -- Componentes Instruction Fetch (IF)
@@ -112,8 +148,8 @@ port map(clock, reset, newpc, PCa);
 ICache: instruction_cache
 port map(clock, PCa, instrucao);
 
-Soma4: add_4
-port map(PCa, NPC);
+Soma4: somador
+port map(PCa, "00000000000000000000000000000100", NPC);
 
 -- Componentes: Instruction Decode - ID
 -- !!! Levar esse componente pra UC
@@ -131,10 +167,30 @@ IDEX: registrador
 generic map(147)
 port map(clock, reset, contWB & contM & contEX & RIout(31 downto 0) & regOutA & regOutB & signExtOut & RIout(52 downto 48) & RIout(47 downto 43), IDEXout);
 
+-- Componentes: Instruction Execution - EX
+SL2: shift_left_2
+port map(IDEXout(41 downto 10), sl2Out);
 
+somador2: somador
+port map(IDEXout(137 downto 106), sl2Out, npcjEX);
 
+Mux2: mux2x1
+generic map(32)
+port map(cEXo(3), IDEXout(73 downto 42), IDEXout(41 downto 10), ulaInputB);
 
+Mux1: mux2x1
+generic map(5)
+port map(cEXo(0), IDEXout(9 downto 5), IDEXout(4 downto 0), endReg);
+ 
+ULA_1: ULA
+port map(IDEXout(105 downto 74), ulaInputB, ulaOp, '0', ulaOutput, zero, open);
 
+ULA_controle: controle_ula
+port map(IDEXout(15 downto 10), cEXo(2 downto 1), ulaOp);
+
+EXMEM: registrador
+generic map(107)
+port map(clock, reset, IDEXout(146 downto 142) & zero & endReg & IDEXout(73 downto 42) & ulaOutput & npcjEX, EXMDout);
 
 
 end architecture;
