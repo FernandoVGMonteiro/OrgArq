@@ -49,6 +49,11 @@ signal endReg: std_logic_vector(4 downto 0);
 signal zero: std_logic;
 signal EXMDout: std_logic_vector(106 downto 0);
 
+-- MEM: Memory Execution
+signal ph1MEM, ph2MEM: std_logic;
+signal DMout: std_logic_vector(31 downto 0);
+signal MEMWBDout: std_logic_vector(102 downto 0);
+
 -- Declaração dos demais componentes
 component registrador is
 generic (numBits: integer);
@@ -130,6 +135,13 @@ port (
 		);
 end component;
 
+component data_memory is
+port (ph1, ph2, memRead, memWrite: in std_logic;
+		address, addressW, dataW: in std_logic_vector(31 downto 0);
+		dataOutput: out std_logic_vector(31 downto 0)
+		);
+end component;
+
 begin
 
 -- Componentes Instruction Fetch (IF)
@@ -188,9 +200,36 @@ port map(IDEXout(105 downto 74), ulaInputB, ulaOp, '0', ulaOutput, zero, open);
 ULA_controle: controle_ula
 port map(IDEXout(15 downto 10), cEXo(2 downto 1), ulaOp);
 
+-- cWBo: 106 downto 105
+-- cMo: 104 downto 102
+-- Zero: 101
 EXMEM: registrador
 generic map(107)
 port map(clock, reset, IDEXout(146 downto 142) & zero & endReg & IDEXout(73 downto 42) & ulaOutput & npcjEX, EXMDout);
+
+-- Componentes: Memory Execution
+memoriaPrincipal: data_memory
+port map(ph1MEM, ph2MEM, EXMDout(103), EXMDout(104), EXMDout(63 downto 32), EXMDout(63 downto 32), EXMDout(95 downto 64), DMout);
+
+pcsrc <= EXMDout(102) and EXMDout(101);
+
+NPCJ <= EXMDout(31 downto 0);
+
+-- 100 downto 69: DMout
+-- 102 downto 101: cWBp
+MEMWB: registrador
+generic map(103)
+port map(clock, reset, EXMDout(106 downto 105) & DMout & EXMDout(100 downto 96) & EXMDout(95 downto 64) & EXMDout(63 downto 32), MEMWBDout);
+
+
+
+
+
+
+
+
+
+
 
 
 end architecture;
