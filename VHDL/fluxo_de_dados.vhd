@@ -52,7 +52,7 @@ signal EXMDout: std_logic_vector(106 downto 0);
 -- MEM: Memory Execution
 signal ph1MEM, ph2MEM: std_logic;
 signal DMout: std_logic_vector(31 downto 0);
-signal MEMWBDout: std_logic_vector(102 downto 0);
+signal MEMWBout: std_logic_vector(102 downto 0);
 
 -- Declaração dos demais componentes
 component registrador is
@@ -174,12 +174,13 @@ port map(rw, ph1, ph2, RIout(57 downto 53), RIout(52 downto 48), enderw, dataw, 
 Sign_ext: extensao_sinal
 port map(RIout(47 downto 32), signExtOut);
 
-
 IDEX: registrador
 generic map(147)
 port map(clock, reset, contWB & contM & contEX & RIout(31 downto 0) & regOutA & regOutB & signExtOut & RIout(52 downto 48) & RIout(47 downto 43), IDEXout);
 
 -- Componentes: Instruction Execution - EX
+cEXo <= IDEXout(142 downto 139);
+
 SL2: shift_left_2
 port map(IDEXout(41 downto 10), sl2Out);
 
@@ -216,20 +217,18 @@ pcsrc <= EXMDout(102) and EXMDout(101);
 NPCJ <= EXMDout(31 downto 0);
 
 -- 100 downto 69: DMout
--- 102 downto 101: cWBp
+-- 102 downto 101: cWBo
 MEMWB: registrador
 generic map(103)
-port map(clock, reset, EXMDout(106 downto 105) & DMout & EXMDout(100 downto 96) & EXMDout(95 downto 64) & EXMDout(63 downto 32), MEMWBDout);
+port map(clock, reset, EXMDout(106 downto 105) & DMout & EXMDout(100 downto 96) & EXMDout(95 downto 64) & EXMDout(63 downto 32), MEMWBout);
 
+-- Componentes: Write Back
+MX3: mux2x1
+generic map(32)
+port map(MEMWBout(101), MEMWBout(31 downto 0), MEMWBout(63 downto 32), dataw);
 
+enderw <= MEMWBout(68 downto 64);
 
-
-
-
-
-
-
-
-
+rw <= MEMWBout(102);
 
 end architecture;
