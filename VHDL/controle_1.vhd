@@ -6,9 +6,9 @@ entity controle_1 is
 port (
 		-- !!! Descobrir se é (5 downto 0) ou (7 downto 0)
 		contin:  in  std_logic_vector(5 downto 0);
-		cWB: out std_logic_vector(1 downto 0);
-		cM:  out std_logic_vector(2 downto 0);
-		cEX: out std_logic_vector(3 downto 0)
+		cWB: out std_logic_vector(1 downto 0) := (others => '0');
+		cM:  out std_logic_vector(2 downto 0) := (others => '0');
+		cEX: out std_logic_vector(3 downto 0) := (others => '0')
 		);
 end entity;
 

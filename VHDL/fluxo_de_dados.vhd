@@ -3,56 +3,59 @@ use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 entity fluxo_de_dados is
-port (clock:	in std_logic;
-		reset:	in std_logic
-		);
+port (clock:	in std_logic);
 end entity;
 
 architecture arch of fluxo_de_dados is
 
+signal reset: std_logic := '0';
+
 -- Declaração de sinais do Pipeline
 
 -- IF: Instruction Fetch
-signal NPC: std_logic_vector(31 downto 0); -- PC + 4
-signal NPCJ: std_logic_vector(31 downto 0); -- PC vindo de desvio
-signal RIout: std_logic_vector(63 downto 0); -- Saída registrador IF_EX
-signal newpc: std_logic_vector(31 downto 0); -- Instrução selecionada (Desvio ou +4)
-signal PCa: std_logic_vector(31 downto 0); -- Endereço da nova instrução
-signal instrucao: std_logic_vector(31 downto 0); -- Instrução
-signal pcsrc: std_logic; -- Seletor da nova instrução
-signal Ctc4: std_logic_vector(31 downto 0); -- ??????
+signal NPC: std_logic_vector(31 downto 0) := (others => '0'); -- PC + 4
+signal NPCJ: std_logic_vector(31 downto 0) := (others => '0'); -- PC vindo de desvio
+signal RIin: std_logic_vector(63 downto 0) := (others => '0'); -- Saída registrador IF_EX
+signal RIout: std_logic_vector(63 downto 0) := (others => '0'); -- Saída registrador IF_EX
+signal newpc: std_logic_vector(31 downto 0) := (others => '0'); -- Instrução selecionada (Desvio ou +4)
+signal PCa: std_logic_vector(31 downto 0) := (others => '0'); -- Endereço da nova instrução
+signal instrucao: std_logic_vector(31 downto 0) := (others => '0'); -- Instrução
+signal pcsrc: std_logic := '0'; -- Seletor da nova instrução
 
 -- ID: Instruction Decode
-signal contWB: std_logic_vector(1 downto 0);
-signal contM: std_logic_vector(2 downto 0);
-signal contEX: std_logic_vector(3 downto 0);
-signal dataw: std_logic_vector(31 downto 0);
-signal enderw: std_logic_vector(4 downto 0);
-signal regOutA: std_logic_vector(31 downto 0);
-signal regOutB: std_logic_vector(31 downto 0);
-signal rw: std_logic;
-signal ph1: std_logic;
-signal ph2: std_logic;
-signal signExtOut: std_logic_vector(31 downto 0);
-signal IDEXout: std_logic_vector(146 downto 0);
-signal cWBo: std_logic_vector(1 downto 0);
-signal cMo:  std_logic_vector(2 downto 0);
-signal cEXo: std_logic_vector(3 downto 0);
+signal contWB: std_logic_vector(1 downto 0) := (others => '0');
+signal contM: std_logic_vector(2 downto 0) := (others => '0');
+signal contEX: std_logic_vector(3 downto 0) := (others => '0');
+signal dataw: std_logic_vector(31 downto 0) := (others => '0');
+signal enderw: std_logic_vector(4 downto 0) := (others => '0');
+signal regOutA: std_logic_vector(31 downto 0) := (others => '0');
+signal regOutB: std_logic_vector(31 downto 0) := (others => '0');
+signal rw: std_logic := '0';
+signal ph1: std_logic := '0';
+signal ph2: std_logic := '0';
+signal signExtOut: std_logic_vector(31 downto 0) := (others => '0');
+signal IDEXin: std_logic_vector(146 downto 0) := (others => '0');
+signal IDEXout: std_logic_vector(146 downto 0) := (others => '0');
+signal cWBo: std_logic_vector(1 downto 0) := (others => '0');
+signal cMo:  std_logic_vector(2 downto 0) := (others => '0');
+signal cEXo: std_logic_vector(3 downto 0) := (others => '0');
 
 -- EX: Instruction Execution
-signal sl2Out: std_logic_vector(31 downto 0);
-signal npcjEx: std_logic_vector(31 downto 0);
-signal ulaInputB: std_logic_vector(31 downto 0);
-signal ulaOutput: std_logic_vector(31 downto 0);
-signal ulaOp: std_logic_vector(3 downto 0);
-signal endReg: std_logic_vector(4 downto 0);
+signal sl2Out: std_logic_vector(31 downto 0) := (others => '0');
+signal npcjEx: std_logic_vector(31 downto 0) := (others => '0');
+signal ulaInputB: std_logic_vector(31 downto 0) := (others => '0');
+signal ulaOutput: std_logic_vector(31 downto 0) := (others => '0');
+signal ulaOp: std_logic_vector(3 downto 0) := (others => '0');
+signal endReg: std_logic_vector(4 downto 0) := (others => '0');
 signal zero: std_logic;
-signal EXMDout: std_logic_vector(106 downto 0);
+signal EXMDin: std_logic_vector(106 downto 0) := (others => '0');
+signal EXMDout: std_logic_vector(106 downto 0) := (others => '0');
 
 -- MEM: Memory Execution
-signal ph1MEM, ph2MEM: std_logic;
-signal DMout: std_logic_vector(31 downto 0);
-signal MEMWBout: std_logic_vector(102 downto 0);
+signal ph1MEM, ph2MEM: std_logic := '0';
+signal DMout: std_logic_vector(31 downto 0) := (others => '0');
+signal MEMWBin: std_logic_vector(102 downto 0) := (others => '0');
+signal MEMWBout: std_logic_vector(102 downto 0) := (others => '0');
 
 -- Declaração dos demais componentes
 component registrador is
@@ -145,9 +148,11 @@ end component;
 begin
 
 -- Componentes Instruction Fetch (IF)
+RIin <= NPC & instrucao;
+
 RI: registrador
 generic map(64)
-port map(clock, reset, NPC & instrucao, RIout);
+port map(clock, reset, RIin, RIout);
 
 Mxpc: mux2x1
 generic map(32)
@@ -174,9 +179,11 @@ port map(rw, ph1, ph2, RIout(57 downto 53), RIout(52 downto 48), enderw, dataw, 
 Sign_ext: extensao_sinal
 port map(RIout(47 downto 32), signExtOut);
 
+IDEXin <= contWB & contM & contEX & RIout(31 downto 0) & regOutA & regOutB & signExtOut & RIout(52 downto 48) & RIout(47 downto 43);
+
 IDEX: registrador
 generic map(147)
-port map(clock, reset, contWB & contM & contEX & RIout(31 downto 0) & regOutA & regOutB & signExtOut & RIout(52 downto 48) & RIout(47 downto 43), IDEXout);
+port map(clock, reset, IDEXin, IDEXout);
 
 -- Componentes: Instruction Execution - EX
 cEXo <= IDEXout(142 downto 139);
@@ -201,12 +208,14 @@ port map(IDEXout(105 downto 74), ulaInputB, ulaOp, '0', ulaOutput, zero, open);
 ULA_controle: controle_ula
 port map(IDEXout(15 downto 10), cEXo(2 downto 1), ulaOp);
 
+EXMDin <= IDEXout(146 downto 142) & zero & endReg & IDEXout(73 downto 42) & ulaOutput & npcjEX;
+
 -- cWBo: 106 downto 105
 -- cMo: 104 downto 102
 -- Zero: 101
 EXMEM: registrador
 generic map(107)
-port map(clock, reset, IDEXout(146 downto 142) & zero & endReg & IDEXout(73 downto 42) & ulaOutput & npcjEX, EXMDout);
+port map(clock, reset, EXMDout, EXMDout);
 
 -- Componentes: Memory Execution
 memoriaPrincipal: data_memory
@@ -216,11 +225,13 @@ pcsrc <= EXMDout(102) and EXMDout(101);
 
 NPCJ <= EXMDout(31 downto 0);
 
+MEMWBin <= EXMDout(106 downto 105) & DMout & EXMDout(100 downto 96) & EXMDout(95 downto 64) & EXMDout(63 downto 32);
+
 -- 100 downto 69: DMout
 -- 102 downto 101: cWBo
 MEMWB: registrador
 generic map(103)
-port map(clock, reset, EXMDout(106 downto 105) & DMout & EXMDout(100 downto 96) & EXMDout(95 downto 64) & EXMDout(63 downto 32), MEMWBout);
+port map(clock, reset, MEMWBin, MEMWBout);
 
 -- Componentes: Write Back
 MX3: mux2x1

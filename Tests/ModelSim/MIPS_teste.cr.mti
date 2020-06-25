@@ -1,0 +1,122 @@
+C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/fluxo_de_dados.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/fluxo_de_dados.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity fluxo_de_dados
+-- Compiling architecture arch of fluxo_de_dados
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/toplevel.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/toplevel.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity toplevel
+-- Compiling architecture arch of toplevel
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/mux2x1.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/mux2x1.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity mux2x1
+-- Compiling architecture arch of mux2x1
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/somador.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/somador.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity somador
+-- Compiling architecture arch of somador
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/banco_registradores.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/banco_registradores.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity banco_registradores
+-- Compiling architecture arch of banco_registradores
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/shift_left_2.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/shift_left_2.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity shift_left_2
+-- Compiling architecture arch of shift_left_2
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/ULA.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/ULA.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity ULA
+-- Compiling architecture arch of ULA
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/data_memory.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/data_memory.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity data_memory
+-- Compiling architecture arch of data_memory
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/instruction_cache.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/instruction_cache.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity instruction_cache
+-- Compiling architecture arch of instruction_cache
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/extensao_sinal.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/extensao_sinal.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity extensao_sinal
+-- Compiling architecture arch of extensao_sinal
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/registrador.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/registrador.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity registrador
+-- Compiling architecture arch of registrador
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_1.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_1.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity controle_1
+-- Compiling architecture arch of controle_1
+
+} {} {}} C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_ula.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_ula.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity controle_ula
+-- Compiling architecture arch of controle_ula
+
+} {} {}}

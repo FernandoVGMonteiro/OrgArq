@@ -1,0 +1,551 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/USP/OrgArq/ULA/simulation
+Ebanco_registradores
+Z0 w1593049268
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/Tests/ModelSim
+Z5 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/banco_registradores.vhd
+Z6 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/banco_registradores.vhd
+l0
+L5
+V3F3bWQ>z]M=g5Mm>MH]WS2
+!s100 <`13Pb39dkc@bc86>T]?=3
+Z7 OV;C;10.5b;63
+32
+Z8 !s110 1593050745
+!i10b 1
+Z9 !s108 1593050745.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/banco_registradores.vhd|
+Z11 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/banco_registradores.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Aarch
+R1
+R2
+R3
+Z14 DEx4 work 19 banco_registradores 0 22 3F3bWQ>z]M=g5Mm>MH]WS2
+l14
+L13
+Z15 VNlKbFWB7X^jBzi3Mc?QYN0
+Z16 !s100 zGlmhSE9Aod9DDX9iac]j0
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Econtrole_1
+Z17 w1593049217
+R1
+R2
+R3
+R4
+Z18 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_1.vhd
+Z19 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_1.vhd
+l0
+L5
+V@=?23h0SCM4S?^ji]=Q1f3
+!s100 5>JFRYjT_^60WLcSo[AdD0
+R7
+32
+Z20 !s110 1593050743
+!i10b 1
+Z21 !s108 1593050743.000000
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_1.vhd|
+Z23 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_1.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 10 controle_1 0 22 @=?23h0SCM4S?^ji]=Q1f3
+l16
+L15
+V0=O][LmG_GGe:iIXmIDaL3
+!s100 ^8AhN2GFGS<@9[@loBMOe2
+R7
+32
+R20
+!i10b 1
+R21
+R22
+R23
+!i113 1
+R12
+R13
+Econtrole_ula
+Z24 w1593049315
+R1
+R2
+R3
+R4
+Z25 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_ula.vhd
+Z26 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_ula.vhd
+l0
+L5
+VI_Z8JfdD>_[<fFLDjjIc]1
+!s100 VomcP^_CHJZX1e7^9EOES0
+R7
+32
+R20
+!i10b 1
+R21
+Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_ula.vhd|
+Z28 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/controle_ula.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 12 controle_ula 0 22 I_Z8JfdD>_[<fFLDjjIc]1
+l15
+L13
+VIz1`J<61IR;z[Q6lW9K5`2
+!s100 ihGz2f]S[@`EdYBZ>KEc:1
+R7
+32
+R20
+!i10b 1
+R21
+R27
+R28
+!i113 1
+R12
+R13
+Edata_memory
+Z29 w1593049264
+R1
+R2
+R3
+R4
+Z30 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/data_memory.vhd
+Z31 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/data_memory.vhd
+l0
+L5
+VBe3V@:H6i7lD9?4oj9CYW2
+!s100 U<l3UBomS_ln>OQU?O;lz3
+R7
+32
+Z32 !s110 1593050744
+!i10b 1
+Z33 !s108 1593050744.000000
+Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/data_memory.vhd|
+Z35 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/data_memory.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 11 data_memory 0 22 Be3V@:H6i7lD9?4oj9CYW2
+l13
+L12
+VHTo[Bkckm_P?cF]G^>RK^3
+!s100 dX9TL]B^[[G>4ad`@]_8J3
+R7
+32
+R32
+!i10b 1
+R33
+R34
+R35
+!i113 1
+R12
+R13
+Eextensao_sinal
+Z36 w1593049259
+R1
+R2
+R3
+R4
+Z37 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/extensao_sinal.vhd
+Z38 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/extensao_sinal.vhd
+l0
+L5
+VC_QPm3]]a7]ihT:_ULNa`1
+!s100 gcg`V@e]f]5<iDzLQL9Ca3
+R7
+32
+R32
+!i10b 1
+R33
+Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/extensao_sinal.vhd|
+Z40 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/extensao_sinal.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 14 extensao_sinal 0 22 C_QPm3]]a7]ihT:_ULNa`1
+l13
+L12
+VkijDIdUP]6m;[VBjmSEhH0
+!s100 mHRIFTN59X17VIbJDSb?U1
+R7
+32
+R32
+!i10b 1
+R33
+R39
+R40
+!i113 1
+R12
+R13
+Efluxo_de_dados
+Z41 w1593050734
+R1
+R2
+R3
+R4
+Z42 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/fluxo_de_dados.vhd
+Z43 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/fluxo_de_dados.vhd
+l0
+L5
+VQ<AIizz_o:j:2_U;U>egi3
+!s100 Gaha]Th<P;oooUWeM2FYN0
+R7
+32
+R32
+!i10b 1
+R33
+Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/fluxo_de_dados.vhd|
+Z45 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/fluxo_de_dados.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 14 fluxo_de_dados 0 22 Q<AIizz_o:j:2_U;U>egi3
+l148
+L9
+VgVfeT=F_<ZMfA^69ZLFK<0
+!s100 RPQ1XLQR0ng;JP?HbiSXl0
+R7
+32
+R32
+!i10b 1
+R33
+R44
+R45
+!i113 1
+R12
+R13
+Einstruction_cache
+Z46 w1593050621
+R1
+R2
+R3
+R4
+Z47 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/instruction_cache.vhd
+Z48 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/instruction_cache.vhd
+l0
+L5
+V=V8OiP0[PUB5QN?1bilaJ1
+!s100 be1T5DPCIzMU@FbUi><9k1
+R7
+32
+R32
+!i10b 1
+R33
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/instruction_cache.vhd|
+Z50 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/instruction_cache.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 17 instruction_cache 0 22 =V8OiP0[PUB5QN?1bilaJ1
+l36
+L12
+VZ5bLaF`m_Qaahz>gY:>W@2
+!s100 1<H:Eb^hhZ[EzQi=PDALf2
+R7
+32
+R32
+!i10b 1
+R33
+R49
+R50
+!i113 1
+R12
+R13
+Emux2x1
+Z51 w1593049803
+R1
+R2
+R3
+R4
+Z52 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/mux2x1.vhd
+Z53 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/mux2x1.vhd
+l0
+L5
+V`JB4fVX?`2ind=DFJOK6K3
+!s100 MKX8IHJbAOMTUCkzQg;b<3
+R7
+32
+R32
+!i10b 1
+R33
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/mux2x1.vhd|
+Z55 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/mux2x1.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 6 mux2x1 0 22 `JB4fVX?`2ind=DFJOK6K3
+l14
+L13
+VdzT:jDM`dBo=]F>jM^[CN0
+!s100 OAb4Je@[JN^Hkk?OFN@`Y0
+R7
+32
+R32
+!i10b 1
+R33
+R54
+R55
+!i113 1
+R12
+R13
+Eregistrador
+Z56 w1593049854
+R1
+R2
+R3
+R4
+Z57 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/registrador.vhd
+Z58 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/registrador.vhd
+l0
+L5
+VVckjNOA_Z^R;S3X:`Q_HT2
+!s100 PBB61<23RamFWZg=1jHj?2
+R7
+32
+R32
+!i10b 1
+R33
+Z59 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/registrador.vhd|
+Z60 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/registrador.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 11 registrador 0 22 VckjNOA_Z^R;S3X:`Q_HT2
+l14
+L13
+VlmKzK]L@zWHKfeF45E@P;3
+!s100 JVRzYGJ5Q9oFdLjolL3GJ3
+R7
+32
+R32
+!i10b 1
+R33
+R59
+R60
+!i113 1
+R12
+R13
+Eshift_left_2
+Z61 w1593049794
+R1
+R2
+R3
+R4
+Z62 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/shift_left_2.vhd
+Z63 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/shift_left_2.vhd
+l0
+L5
+V5BdL_=B_e6<[_f6CMk?9j2
+!s100 58oJm`m@4iPc7F_`d<Z9I3
+R7
+32
+R32
+!i10b 1
+R33
+Z64 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/shift_left_2.vhd|
+Z65 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/shift_left_2.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 12 shift_left_2 0 22 5BdL_=B_e6<[_f6CMk?9j2
+l14
+L12
+VkCcVTG9nOCX;R=?bzTfH;3
+!s100 POHCRFC7ADi>Ql9@am03;3
+R7
+32
+R32
+!i10b 1
+R33
+R64
+R65
+!i113 1
+R12
+R13
+Esomador
+Z66 w1593049790
+R1
+R2
+R3
+R4
+Z67 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/somador.vhd
+Z68 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/somador.vhd
+l0
+L5
+VgTgK^Y`oSgP<MNXeHl_M03
+!s100 f2CPCdXeAkn7[?6;<=U[`2
+R7
+32
+R32
+!i10b 1
+R33
+Z69 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/somador.vhd|
+Z70 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/somador.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 7 somador 0 22 gTgK^Y`oSgP<MNXeHl_M03
+l16
+L12
+V[`[34:1YjSIX?Jc1M<1X@2
+!s100 cOlF076]jNU=_[zaiknfB2
+R7
+32
+R32
+!i10b 1
+R33
+R69
+R70
+!i113 1
+R12
+R13
+Etoplevel
+Z71 w1593050715
+R1
+Z72 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z73 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+R2
+R3
+R4
+Z74 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/toplevel.vhd
+Z75 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/toplevel.vhd
+l0
+L6
+V6nmZkfIWjdlMam1nX^OnB1
+!s100 VG]Nc_ZmZA]VV3=VZF=?B3
+R7
+32
+R8
+!i10b 1
+R9
+Z76 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/toplevel.vhd|
+Z77 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/toplevel.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R72
+R73
+R2
+R3
+DEx4 work 8 toplevel 0 22 6nmZkfIWjdlMam1nX^OnB1
+l19
+L13
+VElD51=W7XTO?nF]TAJIKB1
+!s100 7cOcDaV85JlcaMd^B45P91
+R7
+32
+R8
+!i10b 1
+R9
+R76
+R77
+!i113 1
+R12
+R13
+Eula
+Z78 w1593049772
+R1
+R72
+R73
+R2
+R3
+R4
+Z79 8C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/ULA.vhd
+Z80 FC:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/ULA.vhd
+l0
+L6
+V=P=RJfF`zYJO^m^g5P7ZR0
+!s100 ocUSbVHd4E>gKGGYT@0fo1
+R7
+32
+R8
+!i10b 1
+R9
+Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/ULA.vhd|
+Z82 !s107 C:/Users/Fernando/OneDrive/USP/OrgArq/Projeto/OrgArq/VHDL/ULA.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R72
+R73
+R2
+R3
+DEx4 work 3 ula 0 22 =P=RJfF`zYJO^m^g5P7ZR0
+l35
+L24
+VPjUc4CWc`Q:^R?kL086OM3
+!s100 <<kmH0bBAiP:jUdLBn3kh3
+R7
+32
+R8
+!i10b 1
+R9
+R81
+R82
+!i113 1
+R12
+R13

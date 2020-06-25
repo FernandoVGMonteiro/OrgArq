@@ -5,6 +5,7 @@ use ieee.numeric_std.all;
 
 entity toplevel is
 port (clock:	in std_logic;
+		-- Reset está desconectado
 		reset:	in std_logic
 		);
 end entity;
@@ -12,14 +13,12 @@ end entity;
 architecture arch of toplevel is
 
 component fluxo_de_dados is
-port (clock:	in std_logic;
-		reset:	in std_logic
-		);
+port (clock:	in std_logic);
 end component;
 
 begin
 
 fluxoDeDados: fluxo_de_dados
-port map(clock, reset);
+port map(clock);
 
 end architecture;

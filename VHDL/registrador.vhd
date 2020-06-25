@@ -6,7 +6,7 @@ entity registrador is
 generic (numBits: integer);
 port (clock, reset: in std_logic;
 		input: in std_logic_vector(numBits - 1 downto 0);
-		output: out std_logic_vector(numBits - 1 downto 0)
+		output: out std_logic_vector(numBits - 1 downto 0) := (others => '0')
 		);
 end entity;
 

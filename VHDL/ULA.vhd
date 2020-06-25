@@ -12,11 +12,11 @@ port(
 		-- Sinal de VemUm para conectar a ULA com outras ULAs
 		VemUm:				in  std_logic;
 		-- Saída C com o resultado da operação
-		C:						out std_logic_vector(31 downto 0);
+		C:						out std_logic_vector(31 downto 0) := (others => '0');
 		-- Sinal de Zero para quando o resultado da operação é Zero
 		-- e Overflow para quando o resultado estrapola a capacidade
 		-- de 32 bits.
-		Zero, Overflow:	out std_logic 
+		Zero, Overflow:	out std_logic := '0'
 		
 );
 end entity;
