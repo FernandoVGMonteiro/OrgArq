@@ -14,8 +14,8 @@ architecture arch of instruction_cache is
 type cache_data is array (0 to 6) of std_logic_vector(31 downto 0);
 -- Valores de teste
 constant cache: cache_data := (
-	-- Instrução 0
-	"00000000000000000000000000000111",
+	-- Instrução 0: add $t0, $s1, $s2
+	"00000010001100100100000000100000",
 	-- Instrução 1
 	"00000000000000000000000000001110",
 	-- Instrução 2
