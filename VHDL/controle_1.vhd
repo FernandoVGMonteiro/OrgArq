@@ -13,10 +13,43 @@ port (
 end entity;
 
 architecture arch of controle_1 is
+
+-- Sinal contendo todos os sinais de controle
+signal controle: std_logic_vector(8 downto 0) := (others => '0');
+
+-- Sinais de controle individuais
+-- Controle da execução / cálculo de endereço
+signal RegDst, ALUOp1, ALUOp0, ALUSrc: std_logic;
+-- Controle do acesso à memória
+signal Branch, MemRead, MemWrite: std_logic;
+-- Controle do WriteBack
+signal RegWrite, MemtoReg: std_logic;
+
 begin
 
-	-- MONTAR AQUI AS CONDICÔES DE CONTROLE
-	-- DO BLOCO UC1, SLIDE DO INSTRUCTION DECODE
-	-- AULA 1 SEMANA 9
+	-- Instruções R-type
+	controle <= "110000010" when contin = "000000" else
+	-- Instrução LW
+					"000101011" when contin = "100011" else
+	-- Instrução SW 
+					"X0010010X" when contin = "101011" else
+	-- Instrução BNE
+					"X0101000X" when contin = "000101" else
+	-- Instruções inválidas
+					"000000000";
 
+	RegDst 	<= controle(8);
+	ALUOp1 	<= controle(7);
+	ALUOp0 	<= controle(6);
+	ALUSrc 	<= controle(5);
+	Branch 	<= controle(4);
+	MemRead 	<= controle(3);
+	MemWrite <= controle(2);
+	RegWrite <= controle(1);
+	MemtoReg <= controle(0);
+	
+	cEX <= ALUSrc & ALUOp0 & ALUOp1 & RegDst;
+	cM  <= MemWrite & MemRead & Branch;
+	cWB <= MemtoReg & RegWrite;
+	
 end architecture;

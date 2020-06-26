@@ -14,6 +14,20 @@ architecture arch of controle_ula is
 
 begin
 
-	-- IMPLEMENTAR O CONTROLE DA ULA
+	-- Instrução: LW ou SW -> OperaçãoULA: ADD
+	output <= "0010" when ulaOp = "00" else
+	-- Instrução: BEQ -> OperaçãoULA: SUB
+				 "0110" when ulaOp = "01" else
+	-- Instrução: ADD -> OperaçãoULA: ADD
+				 "0010" when ulaOp = "10" and input = "100000" else
+	-- Instrução: SUB -> OperaçãoULA: SUB
+				 "0110" when ulaOp = "10" and input = "100010" else
+	-- Instrução: AND -> OperaçãoULA: AND
+				 "0000" when ulaOp = "10" and input = "100100" else
+	-- Instrução: OR -> OperaçãoULA: OR
+				 "0001" when ulaOp = "10" and input = "100101" else
+	-- Instrução: SET_ON_LESS_THAN -> OperaçãoULA: SET_ON_LESS_THAN
+				 "0111" when ulaOp = "10" and input = "101010" else
+				 "0000"; -- Opção inválida
 
 end architecture;

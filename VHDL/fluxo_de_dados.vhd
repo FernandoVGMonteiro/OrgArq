@@ -148,7 +148,7 @@ end component;
 begin
 
 -- Componentes Instruction Fetch (IF)
-RIin <= NPC & instrucao;
+RIin <= instrucao & NPC;
 
 RI: registrador
 generic map(64)
