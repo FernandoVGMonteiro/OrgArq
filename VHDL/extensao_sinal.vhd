@@ -10,8 +10,12 @@ port (
 end entity;
 
 architecture arch of extensao_sinal is
+
+signal extended_bit: std_logic_vector(15 downto 0) := (others => '0');
+
 begin
 
-	-- COMPLETAR LÓGICA DE EXTENSÃO DE SINAL
+	extended_bit <= (others => input(15));
+	output <= extended_bit & input;
 
 end architecture;
