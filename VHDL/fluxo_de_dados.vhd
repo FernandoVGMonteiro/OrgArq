@@ -148,6 +148,8 @@ end component;
 begin
 
 -- Componentes Instruction Fetch (IF)
+-- Instr: (63 downto 32)
+-- NPC:   (31 downto 0)
 RIin <= instrucao & NPC;
 
 RI: registrador
@@ -179,6 +181,15 @@ port map(rw, ph1, ph2, RIout(57 downto 53), RIout(52 downto 48), enderw, dataw, 
 Sign_ext: extensao_sinal
 port map(RIout(47 downto 32), signExtOut);
 
+-- cWB:  (146 downto 145)
+-- cM:   (144 downto 142)
+-- cEX:  (141 downto 138)
+-- rt:   (137 downto 133)
+-- rd:   (132 downto 128)
+-- sext: (127 downto 96)
+-- Regb: (95 downto 64)
+-- Rega: (63 downto 32)
+-- NPC:  (31 downto 0)
 IDEXin <= contWB & contM & contEX & RIout(31 downto 0) & regOutA & regOutB & signExtOut & RIout(52 downto 48) & RIout(47 downto 43);
 
 IDEX: registrador
@@ -188,31 +199,35 @@ port map(clock, reset, IDEXin, IDEXout);
 -- Componentes: Instruction Execution - EX
 cEXo <= IDEXout(142 downto 139);
 
-SL2: shift_left_2
-port map(IDEXout(41 downto 10), sl2Out);
+SL2: shift_left_2 -- Entra saída do SignExtend
+port map(IDEXout(127 downto 96), sl2Out);
 
-somador2: somador
-port map(IDEXout(137 downto 106), sl2Out, npcjEX);
+somador2: somador -- NPC + SignExtend deslocado
+port map(IDEXout(31 downto 0), sl2Out, npcjEX);
 
-Mux2: mux2x1
+Mux2: mux2x1 -- Seleciona entre RegA e saída do SignExtend
 generic map(32)
-port map(cEXo(3), IDEXout(73 downto 42), IDEXout(41 downto 10), ulaInputB);
+port map(cEXo(3), IDEXout(63 downto 32), IDEXout(127 downto 96), ulaInputB);
 
-Mux1: mux2x1
+Mux1: mux2x1 -- Seleciona entre RT e RD
 generic map(5)
-port map(cEXo(0), IDEXout(9 downto 5), IDEXout(4 downto 0), endReg);
+port map(cEXo(0), IDEXout(137 downto 133), IDEXout(132 downto 128), endReg);
  
 ULA_1: ULA
-port map(IDEXout(105 downto 74), ulaInputB, ulaOp, '0', ulaOutput, zero, open);
+port map(IDEXout(95 downto 64), ulaInputB, ulaOp, '0', ulaOutput, zero, open);
 
 ULA_controle: controle_ula
-port map(IDEXout(15 downto 10), cEXo(2 downto 1), ulaOp);
+port map(IDEXout(101 downto 96), cEXo(2 downto 1), ulaOp);
 
-EXMDin <= IDEXout(146 downto 142) & zero & endReg & IDEXout(73 downto 42) & ulaOutput & npcjEX;
+-- cWBo:   (106 downto 105)
+-- cMo:    (104 downto 102)
+-- Zero:   (101)
+-- EndReg: (100 downto 96)
+-- Reg:    (95 downto 64)
+-- ULA:    (63 downto 32)
+-- NPCJ:   (31 downto 0)
+EXMDin <= IDEXout(146 downto 142) & zero & endReg & IDEXout(63 downto 32) & ulaOutput & npcjEX;
 
--- cWBo: 106 downto 105
--- cMo: 104 downto 102
--- Zero: 101
 EXMEM: registrador
 generic map(107)
 port map(clock, reset, EXMDout, EXMDout);
@@ -225,10 +240,13 @@ pcsrc <= EXMDout(102) and EXMDout(101);
 
 NPCJ <= EXMDout(31 downto 0);
 
+-- cWBo:   (102 downto 101)
+-- DMout:  (100 downto 69)
+-- Enderw: (68 downto 64)
+-- Reg:    (63 downto 32)
+-- ULAo:   (31 downto 0)
 MEMWBin <= EXMDout(106 downto 105) & DMout & EXMDout(100 downto 96) & EXMDout(95 downto 64) & EXMDout(63 downto 32);
 
--- 100 downto 69: DMout
--- 102 downto 101: cWBo
 MEMWB: registrador
 generic map(103)
 port map(clock, reset, MEMWBin, MEMWBout);
