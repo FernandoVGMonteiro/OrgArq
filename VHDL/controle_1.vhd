@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity controle_1 is
 port (
-		-- !!! Descobrir se é (5 downto 0) ou (7 downto 0)
+		funct: 	in  std_logic_vector(5 downto 0);
 		contin:  in  std_logic_vector(5 downto 0);
 		cWB: out std_logic_vector(1 downto 0) := (others => '0');
 		cM:  out std_logic_vector(2 downto 0) := (others => '0');
@@ -27,8 +27,10 @@ signal RegWrite, MemtoReg: std_logic;
 
 begin
 
+	-- Instrução NOP
+	controle <= "000000000" when funct = "000000" else
 	-- Instruções R-type
-	controle <= "110000010" when contin = "000000" else
+					"110000010" when contin = "000000" else
 	-- Instrução LW
 					"000101011" when contin = "100011" else
 	-- Instrução SW 

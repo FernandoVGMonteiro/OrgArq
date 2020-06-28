@@ -36,8 +36,6 @@ signal ph2: std_logic := '0';
 signal signExtOut: std_logic_vector(31 downto 0) := (others => '0');
 signal IDEXin: std_logic_vector(146 downto 0) := (others => '0');
 signal IDEXout: std_logic_vector(146 downto 0) := (others => '0');
-signal cWBo: std_logic_vector(1 downto 0) := (others => '0');
-signal cMo:  std_logic_vector(2 downto 0) := (others => '0');
 signal cEXo: std_logic_vector(3 downto 0) := (others => '0');
 
 -- EX: Instruction Execution
@@ -90,6 +88,7 @@ end component;
 
 component controle_1 is
 port (
+		funct: 	in  std_logic_vector(5 downto 0);
 		contin:  in  std_logic_vector(5 downto 0);
 		cWB: out std_logic_vector(1 downto 0);
 		cM:  out std_logic_vector(2 downto 0);
@@ -139,7 +138,7 @@ port (
 end component;
 
 component data_memory is
-port (ph1, ph2, memRead, memWrite: in std_logic;
+port (clock, ph1, ph2, memRead, memWrite: in std_logic;
 		address, addressW, dataW: in std_logic_vector(31 downto 0);
 		dataOutput: out std_logic_vector(31 downto 0)
 		);
@@ -173,7 +172,7 @@ port map(PCa, "00000000000000000000000000000100", NPC);
 -- Componentes: Instruction Decode - ID
 -- !!! Levar esse componente pra UC
 UC1: controle_1
-port map(RIout(63 downto 58), contWB, contM, contEX);
+port map(RIout(37 downto 32), RIout(63 downto 58), contWB, contM, contEX);
 
 MemReg: banco_registradores
 port map(rw, ph1, ph2, RIout(57 downto 53), RIout(52 downto 48), enderw, dataw, regOutA, regOutB);
@@ -234,7 +233,7 @@ port map(clock, reset, EXMDout, EXMDout);
 
 -- Componentes: Memory Execution
 memoriaPrincipal: data_memory
-port map(ph1MEM, ph2MEM, EXMDout(103), EXMDout(104), EXMDout(63 downto 32), EXMDout(63 downto 32), EXMDout(95 downto 64), DMout);
+port map(clock, ph1MEM, ph2MEM, EXMDout(103), EXMDout(104), EXMDout(63 downto 32), EXMDout(63 downto 32), EXMDout(95 downto 64), DMout);
 
 pcsrc <= EXMDout(102) and EXMDout(101);
 
