@@ -52,6 +52,6 @@ begin
 	
 	cEX <= ALUSrc & ALUOp0 & ALUOp1 & RegDst;
 	cM  <= MemWrite & MemRead & Branch;
-	cWB <= MemtoReg & RegWrite;
+	cWB <= RegWrite & MemtoReg;
 	
 end architecture;

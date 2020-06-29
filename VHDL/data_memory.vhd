@@ -41,13 +41,14 @@ begin
 	
 	process(clock, address)
 	begin
-	
-		if memRead = '1' then
-			if clock'event and clock = '1' then
+		
+		-- Leitura e escrita em memória acontecem na borda de descida
+		if clock'event and clock = '0' then
+			if memRead = '1' then
 				dataOutput <= memory(addressInt);
+			else
+				dataOutput <= (others => '0');
 			end if;
-		else
-			dataOutput <= (others => '0');
 		end if;
 		
 	
@@ -55,9 +56,10 @@ begin
 	
 	process(clock, addressW)
 	begin
-	
-		if memWrite = '1' then
-			if clock'event and clock = '1' then
+		
+		-- Leitura e escrita em memória acontecem na borda de descida
+		if clock'event and clock = '0' then
+			if memWrite = '1' then
 				memory(addressWInt) <= dataW;
 			end if;
 		end if;

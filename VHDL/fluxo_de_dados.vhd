@@ -253,7 +253,7 @@ port map(clock, reset, MEMWBin, MEMWBout);
 -- Componentes: Write Back
 MX3: mux2x1
 generic map(32)
-port map(MEMWBout(101), MEMWBout(63 downto 32), MEMWBout(31 downto 0), dataw);
+port map(MEMWBout(101), MEMWBout(31 downto 0), MEMWBout(100 downto 69), dataw);
 
 enderw <= MEMWBout(68 downto 64);
 
