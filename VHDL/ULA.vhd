@@ -36,44 +36,26 @@ begin
 
 	A_ext <= unsigned('0' & A);
 	B_ext <= unsigned('0' & B);
-
-	process(Controle, A, B, VemUm)
-	begin
-
-		case Controle is
-			-- Controle = "000" seleciona operação AND
-			when "0000" =>
-				temp <= '0' & signed(A and B);
-			-- Controle = "001" seleciona operação OR
-			when "0001" =>
-				temp <= '0' & signed(A or B);
-			-- Controle = "010" seleciona operação Add Unsigned
-			-- O operando ("" & VemUm) acrescenta uma unidade caso VemUm = '1'
-			when "0010" =>
-				temp <= signed(A_ext + B_ext + ("" & VemUm));
-			-- Controle = "011" seleciona operação Add Signed
-			when "0011" =>
-				temp <= '0' & signed(A) + signed(B) + ("" & VemUm);
-			-- Controle = "100" seleciona operação Set on Less Than
-			when "0100" =>
-				temp <= signed(A_ext - B_ext);
-			-- Controle = "101" seleciona operação Subtract Unsigned
-			when "0101" =>
-				temp <= signed(A_ext - B_ext);
-			-- Controle = "110" seleciona operação Subtract Signed
-			when "0110" =>
-				temp <= '0' & signed(A) - signed(B);
-			-- Controle = "111" seleciona operação NOP
-			when "0111" =>
-				temp <= temp;
-			-- Qualquer outro valor coloca zeros na saída
-			when others =>
-				temp <= (others => '0');
-		end case;
+			  -- Controle = "000" seleciona operação AND
+	temp <= '0' & signed(A and B) when Controle = "0000" else
+			  -- Controle = "001" seleciona operação OR
+			  '0' & signed(A or B) when Controle = "0001" else
+			  -- Controle = "010" seleciona operação Add Unsigned
+			  -- O operando ("" & VemUm) acrescenta uma unidade caso VemUm = '1'
+			  signed(A_ext + B_ext + ("" & VemUm)) when Controle = "0010" else
+			  -- Controle = "011" seleciona operação Add Signed
+			  '0' & signed(A) + signed(B) + ("" & VemUm) when Controle = "0011" else
+			  -- Controle = "100" seleciona operação Set on Less Than
+			  signed(A_ext - B_ext) when Controle = "0100" else
+			  -- Controle = "101" seleciona operação Subtract Unsigned
+			  signed(A_ext - B_ext) when Controle = "0101" else
+			  -- Controle = "110" seleciona operação Subtract Signed
+			  '0' & signed(A) - signed(B) when Controle = "0110" else
+			  -- Controle = "111" seleciona operação NOP
+			  temp when Controle = "0111" else
+			  -- Qualquer outro valor coloca zeros na saída
+			  (others => '0');
 	
-	end process;
-	
-	-- 
 	C <= std_logic_vector(temp(31 downto 0));
 	Overflow <= temp(32);
 	Zero 	<= '1' when temp = "00000000000000000000000000000000" else

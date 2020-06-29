@@ -189,14 +189,14 @@ port map(RIout(47 downto 32), signExtOut);
 -- Regb: (95 downto 64)
 -- Rega: (63 downto 32)
 -- NPC:  (31 downto 0)
-IDEXin <= contWB & contM & contEX & RIout(31 downto 0) & regOutA & regOutB & signExtOut & RIout(52 downto 48) & RIout(47 downto 43);
+IDEXin <= contWB & contM & contEX & RIout(52 downto 48) & RIout(47 downto 43) & signExtOut & regOutA & regOutB & RIout(31 downto 0);
 
 IDEX: registrador
 generic map(147)
 port map(clock, reset, IDEXin, IDEXout);
 
 -- Componentes: Instruction Execution - EX
-cEXo <= IDEXout(142 downto 139);
+cEXo <= IDEXout(141 downto 138);
 
 SL2: shift_left_2 -- Entra saída do SignExtend
 port map(IDEXout(127 downto 96), sl2Out);
@@ -229,7 +229,7 @@ EXMDin <= IDEXout(146 downto 142) & zero & endReg & IDEXout(63 downto 32) & ulaO
 
 EXMEM: registrador
 generic map(107)
-port map(clock, reset, EXMDout, EXMDout);
+port map(clock, reset, EXMDin, EXMDout);
 
 -- Componentes: Memory Execution
 memoriaPrincipal: data_memory
@@ -253,7 +253,7 @@ port map(clock, reset, MEMWBin, MEMWBout);
 -- Componentes: Write Back
 MX3: mux2x1
 generic map(32)
-port map(MEMWBout(101), MEMWBout(31 downto 0), MEMWBout(63 downto 32), dataw);
+port map(MEMWBout(101), MEMWBout(63 downto 32), MEMWBout(31 downto 0), dataw);
 
 enderw <= MEMWBout(68 downto 64);
 
