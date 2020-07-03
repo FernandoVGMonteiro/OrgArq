@@ -3,7 +3,16 @@ use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 entity fluxo_de_dados is
-port (clock:	in std_logic);
+port (clock:			in std_logic;
+		functcode:		out  std_logic_vector(5 downto 0);
+		opcode:			out  std_logic_vector(5 downto 0);
+		contWB:			in std_logic_vector(1 downto 0);
+		contM:			in std_logic_vector(2 downto 0);
+		contEX:			in std_logic_vector(3 downto 0);
+		functcodeULA:	out  std_logic_vector(5 downto 0);
+		ulaOpCode:		out  std_logic_vector(1 downto 0);
+		ulaOp:			in std_logic_vector(3 downto 0)
+);
 end entity;
 
 architecture arch of fluxo_de_dados is
@@ -23,9 +32,6 @@ signal instrucao: std_logic_vector(31 downto 0) := (others => '0'); -- Instruç�
 signal pcsrc: std_logic := '0'; -- Seletor da nova instrução
 
 -- ID: Instruction Decode
-signal contWB: std_logic_vector(1 downto 0) := (others => '0');
-signal contM: std_logic_vector(2 downto 0) := (others => '0');
-signal contEX: std_logic_vector(3 downto 0) := (others => '0');
 signal dataw: std_logic_vector(31 downto 0) := (others => '0');
 signal enderw: std_logic_vector(4 downto 0) := (others => '0');
 signal regOutA: std_logic_vector(31 downto 0) := (others => '0');
@@ -43,7 +49,6 @@ signal sl2Out: std_logic_vector(31 downto 0) := (others => '0');
 signal npcjEx: std_logic_vector(31 downto 0) := (others => '0');
 signal ulaInputB: std_logic_vector(31 downto 0) := (others => '0');
 signal ulaOutput: std_logic_vector(31 downto 0) := (others => '0');
-signal ulaOp: std_logic_vector(3 downto 0) := (others => '0');
 signal endReg: std_logic_vector(4 downto 0) := (others => '0');
 signal zero: std_logic;
 signal EXMDin: std_logic_vector(106 downto 0) := (others => '0');
@@ -86,16 +91,6 @@ port (
 		);
 end component;
 
-component controle_1 is
-port (
-		funct: 	in  std_logic_vector(5 downto 0);
-		contin:  in  std_logic_vector(5 downto 0);
-		cWB: out std_logic_vector(1 downto 0);
-		cM:  out std_logic_vector(2 downto 0);
-		cEX: out std_logic_vector(3 downto 0)
-		);
-end component;
-
 component banco_registradores is
 port (rw, ph1, ph2: 		 in std_logic;
 		endA, endB, endW:  in  std_logic_vector(4 downto 0);
@@ -127,14 +122,6 @@ port(
 		Zero, Overflow:	out std_logic 
 		
 );
-end component;
-
-component controle_ula is
-port (
-		input:  in  std_logic_vector(5 downto 0);
-		ulaOp:  in  std_logic_vector(1 downto 0);
-		output: out std_logic_vector(3 downto 0)
-		);
 end component;
 
 component data_memory is
@@ -170,9 +157,10 @@ Soma4: somador
 port map(PCa, "00000000000000000000000000000100", NPC);
 
 -- Componentes: Instruction Decode - ID
--- !!! Levar esse componente pra UC
-UC1: controle_1
-port map(RIout(37 downto 32), RIout(63 downto 58), contWB, contM, contEX);
+
+-- CONTROLE 1
+functcode <= RIout(37 downto 32);
+opcode <= RIout(63 downto 58);
 
 MemReg: banco_registradores
 port map(rw, ph1, ph2, RIout(57 downto 53), RIout(52 downto 48), enderw, dataw, regOutA, regOutB);
@@ -215,8 +203,10 @@ port map(cEXo(0), IDEXout(137 downto 133), IDEXout(132 downto 128), endReg);
 ULA_1: ULA
 port map(IDEXout(95 downto 64), ulaInputB, ulaOp, '0', ulaOutput, zero, open);
 
-ULA_controle: controle_ula
-port map(IDEXout(101 downto 96), cEXo(2 downto 1), ulaOp);
+-- CONTROLE ULA
+functCodeULA <= IDEXout(101 downto 96);
+ulaOpcode <= cEXo(2 downto 1);
+
 
 -- cWBo:   (106 downto 105)
 -- cMo:    (104 downto 102)
