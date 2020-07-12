@@ -18,8 +18,12 @@ begin
 	output <= "0010" when ulaOp = "00" else
 	-- Instrução: BEQ -> OperaçãoULA: SUB
 				 "0110" when ulaOp = "01" else
-	-- Instrução: ADD -> OperaçãoULA: ADD
+	-- Instrução: SLL -> OperaçãoULA: SLL
+				 "0111" when ulaOp = "10" and input = "000000" else
+	-- Instrução: ADD Signed -> OperaçãoULA: ADD Signed
 				 "0010" when ulaOp = "10" and input = "100000" else
+	-- Instrução: ADD Unsigned -> OperaçãoULA: ADD Unsigned
+				 "0011" when ulaOp = "10" and input = "100001" else
 	-- Instrução: SUB -> OperaçãoULA: SUB
 				 "0110" when ulaOp = "10" and input = "100010" else
 	-- Instrução: AND -> OperaçãoULA: AND

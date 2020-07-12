@@ -40,8 +40,8 @@ signal rw: std_logic := '0';
 signal ph1: std_logic := '0';
 signal ph2: std_logic := '0';
 signal signExtOut: std_logic_vector(31 downto 0) := (others => '0');
-signal IDEXin: std_logic_vector(146 downto 0) := (others => '0');
-signal IDEXout: std_logic_vector(146 downto 0) := (others => '0');
+signal IDEXin: std_logic_vector(151 downto 0) := (others => '0');
+signal IDEXout: std_logic_vector(151 downto 0) := (others => '0');
 signal cEXo: std_logic_vector(3 downto 0) := (others => '0');
 
 -- EX: Instruction Execution
@@ -119,7 +119,8 @@ port(
 		Controle:			in  std_logic_vector( 3 downto 0);
 		VemUm:				in  std_logic;
 		C:						out std_logic_vector(31 downto 0);
-		Zero, Overflow:	out std_logic 
+		Zero, Overflow:	out std_logic;
+		Shamt:				in  std_logic_vector(4 downto 0)
 		
 );
 end component;
@@ -168,6 +169,7 @@ port map(rw, ph1, ph2, RIout(57 downto 53), RIout(52 downto 48), enderw, dataw, 
 Sign_ext: extensao_sinal
 port map(RIout(47 downto 32), signExtOut);
 
+-- Shamt:(151 downto 147)
 -- cWB:  (146 downto 145)
 -- cM:   (144 downto 142)
 -- cEX:  (141 downto 138)
@@ -177,10 +179,10 @@ port map(RIout(47 downto 32), signExtOut);
 -- Regb: (95 downto 64)
 -- Rega: (63 downto 32)
 -- NPC:  (31 downto 0)
-IDEXin <= contWB & contM & contEX & RIout(52 downto 48) & RIout(47 downto 43) & signExtOut & regOutA & regOutB & RIout(31 downto 0);
+IDEXin <= RIout(42 downto 38) & contWB & contM & contEX & RIout(52 downto 48) & RIout(47 downto 43) & signExtOut & regOutA & regOutB & RIout(31 downto 0);
 
 IDEX: registrador
-generic map(147)
+generic map(152)
 port map(clock, reset, IDEXin, IDEXout);
 
 -- Componentes: Instruction Execution - EX
@@ -201,7 +203,7 @@ generic map(5)
 port map(cEXo(0), IDEXout(137 downto 133), IDEXout(132 downto 128), endReg);
  
 ULA_1: ULA
-port map(IDEXout(95 downto 64), ulaInputB, ulaOp, '0', ulaOutput, zero, open);
+port map(IDEXout(95 downto 64), ulaInputB, ulaOp, '0', ulaOutput, zero, open, IDEXout(151 downto 147));
 
 -- CONTROLE ULA
 functCodeULA <= IDEXout(101 downto 96);

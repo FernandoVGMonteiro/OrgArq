@@ -27,16 +27,16 @@ signal RegWrite, MemtoReg: std_logic;
 
 begin
 
-	-- Instrução NOP
-	controle <= "000000000" when funct = "000000" else
 	-- Instruções R-type
-					"110000010" when contin = "000000" else
+	controle <= "110000010" when contin = "000000" else
 	-- Instrução LW
 					"000101011" when contin = "100011" else
 	-- Instrução SW 
 					"X0010010X" when contin = "101011" else
 	-- Instrução BNE
 					"X0101000X" when contin = "000101" else
+	-- Instrução ADDI
+					"000100010" when contin = "001000" else
 	-- Instruções inválidas
 					"000000000";
 
@@ -50,7 +50,7 @@ begin
 	RegWrite <= controle(1);
 	MemtoReg <= controle(0);
 	
-	cEX <= ALUSrc & ALUOp0 & ALUOp1 & RegDst;
+	cEX <= ALUSrc & ALUOp1 & ALUOp0 & RegDst;
 	cM  <= MemWrite & MemRead & Branch;
 	cWB <= RegWrite & MemtoReg;
 	

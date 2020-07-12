@@ -16,7 +16,8 @@ port(
 		-- Sinal de Zero para quando o resultado da operação é Zero
 		-- e Overflow para quando o resultado estrapola a capacidade
 		-- de 32 bits.
-		Zero, Overflow:	out std_logic := '0'
+		Zero, Overflow:	out std_logic := '0';
+		Shamt:				in  std_logic_vector(4 downto 0)
 		
 );
 end entity;
@@ -32,27 +33,30 @@ architecture arch of ULA is
 	-- identificar Overflow na operação de soma unsigned
 	signal A_ext, B_ext:	unsigned(32 downto 0) := (others => '0');
 	
+	signal Shamt_int: integer range 0 to 31 := 0;
+	
 begin
 
+	Shamt_int <= to_integer(unsigned(Shamt));
 	A_ext <= unsigned('0' & A);
 	B_ext <= unsigned('0' & B);
-			  -- Controle = "000" seleciona operação AND
+			  -- Controle = "0000" seleciona operação AND
 	temp <= '0' & signed(A and B) when Controle = "0000" else
-			  -- Controle = "001" seleciona operação OR
+			  -- Controle = "0001" seleciona operação OR
 			  '0' & signed(A or B) when Controle = "0001" else
-			  -- Controle = "010" seleciona operação Add Unsigned
+			  -- Controle = "0010" seleciona operação Add Unsigned
 			  -- O operando ("" & VemUm) acrescenta uma unidade caso VemUm = '1'
 			  signed(A_ext + B_ext + ("" & VemUm)) when Controle = "0010" else
-			  -- Controle = "011" seleciona operação Add Signed
+			  -- Controle = "0011" seleciona operação Add Signed
 			  '0' & signed(A) + signed(B) + ("" & VemUm) when Controle = "0011" else
-			  -- Controle = "100" seleciona operação Set on Less Than
+			  -- Controle = "0100" seleciona operação Set on Less Than
 			  signed(A_ext - B_ext) when Controle = "0100" else
-			  -- Controle = "101" seleciona operação Subtract Unsigned
+			  -- Controle = "0101" seleciona operação Subtract Unsigned
 			  signed(A_ext - B_ext) when Controle = "0101" else
-			  -- Controle = "110" seleciona operação Subtract Signed
+			  -- Controle = "0110" seleciona operação Subtract Signed
 			  '0' & signed(A) - signed(B) when Controle = "0110" else
-			  -- Controle = "111" seleciona operação NOP
-			  temp when Controle = "0111" else
+			  -- Controle = "1000" seleciona shift left (Shamt)
+			  signed(B_ext sll Shamt_int) when Controle = "0111" else
 			  -- Qualquer outro valor coloca zeros na saída
 			  (others => '0');
 	
