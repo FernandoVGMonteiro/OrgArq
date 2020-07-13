@@ -37,6 +37,8 @@ begin
 					"X0101000X" when contin = "000101" else
 	-- Instrução ADDI
 					"000100010" when contin = "001000" else
+	-- Instrução SLT
+					"011100010" when contin = "001010" else
 	-- Instruções inválidas
 					"000000000";
 

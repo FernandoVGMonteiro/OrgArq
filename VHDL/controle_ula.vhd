@@ -18,6 +18,8 @@ begin
 	output <= "0010" when ulaOp = "00" else
 	-- Instrução: BEQ -> OperaçãoULA: SUB
 				 "0110" when ulaOp = "01" else
+	-- Instrução: SLTI -> OperaçãoULA: SLT
+				 "0100" when ulaOp = "11" else
 	-- Instrução: SLL -> OperaçãoULA: SLL
 				 "0111" when ulaOp = "10" and input = "000000" else
 	-- Instrução: ADD Signed -> OperaçãoULA: ADD Signed
@@ -31,7 +33,7 @@ begin
 	-- Instrução: OR -> OperaçãoULA: OR
 				 "0001" when ulaOp = "10" and input = "100101" else
 	-- Instrução: SET_ON_LESS_THAN -> OperaçãoULA: SET_ON_LESS_THAN
-				 "0111" when ulaOp = "10" and input = "101010" else
+				 "0100" when ulaOp = "10" and input = "101010" else
 				 "0000"; -- Opção inválida
 
 end architecture;

@@ -32,7 +32,7 @@ architecture arch of ULA is
 	-- Aqui adicionamos um zero aos operandos A e B para ser possível
 	-- identificar Overflow na operação de soma unsigned
 	signal A_ext, B_ext:	unsigned(32 downto 0) := (others => '0');
-	
+	signal SLT_sub: signed(32 downto 0) := (others => '0');	
 	signal Shamt_int: integer range 0 to 31 := 0;
 	
 begin
@@ -40,6 +40,8 @@ begin
 	Shamt_int <= to_integer(unsigned(Shamt));
 	A_ext <= unsigned('0' & A);
 	B_ext <= unsigned('0' & B);
+	SLT_sub <= signed(A_ext - B_ext);
+	
 			  -- Controle = "0000" seleciona operação AND
 	temp <= '0' & signed(A and B) when Controle = "0000" else
 			  -- Controle = "0001" seleciona operação OR
@@ -50,7 +52,7 @@ begin
 			  -- Controle = "0011" seleciona operação Add Signed
 			  '0' & signed(A) + signed(B) + ("" & VemUm) when Controle = "0011" else
 			  -- Controle = "0100" seleciona operação Set on Less Than
-			  signed(A_ext - B_ext) when Controle = "0100" else
+			  "00000000000000000000000000000000" & SLT_sub(32) when Controle = "0100" else
 			  -- Controle = "0101" seleciona operação Subtract Unsigned
 			  signed(A_ext - B_ext) when Controle = "0101" else
 			  -- Controle = "0110" seleciona operação Subtract Signed
